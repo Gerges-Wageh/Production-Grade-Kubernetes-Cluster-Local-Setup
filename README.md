@@ -19,7 +19,7 @@
 | Cluster | Kubernetes · Minikube (3-node) |
 | Application | Golang |
 | Database | PostgreSQL |
-| Connection Pooling | PgBouncer (sidecar in DB pod) |
+| Connection Pooling | PgBouncer |
 | Ingress | NGINX Ingress Controller |
 | Observability | Prometheus · Grafana · kube-state-metrics |
 | Package Management | Helm |

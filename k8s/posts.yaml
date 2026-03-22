@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-service
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: posts-service
+  template:
+    metadata:
+      labels:
+        app: posts-service
+    spec:
+      containers:
+        - name: posts-service
+          image: stunning1/posts-service:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: posts-db-secret
+                  key: DATABASE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-service
+  labels:                     
+    app: posts-service
+spec:
+  type: NodePort
+  selector:
+    app: posts-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      nodePort: 31000

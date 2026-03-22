@@ -8,7 +8,7 @@
 
 ![Architecture Diagram](img/Architecture.png)
 
-> **Traffic flow:** External traffic & K6 load tester → NGINX Ingress → Posts app pods (×3) → PgBouncer sidecar → PostgreSQL · Prometheus scrapes `/metrics` from each pod → Grafana dashboards · GitHub Actions builds and pushes on every merge to `main`.
+> **Traffic flow:** External traffic & K6 load tester → NGINX Ingress → Posts app pods (×3) → PgBouncer → PostgreSQL · Prometheus scrapes `/metrics` from each pod → Grafana dashboards · GitHub Actions builds and pushes on every merge to `main`.
 
 ---
 

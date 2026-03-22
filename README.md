@@ -231,10 +231,5 @@ Dashboards include:
 
 ---
 
-## License
-
-MIT
-
----
 
 <p align="center">Built with curiosity, debugged with patience.</p>

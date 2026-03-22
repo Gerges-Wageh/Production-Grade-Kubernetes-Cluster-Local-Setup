@@ -6,7 +6,7 @@
 
 ## Architecture
 
-![Architecture Diagram](docs/architecture.png)
+![Architecture Diagram](img/Architecture.png)
 
 > **Traffic flow:** External traffic & K6 load tester → NGINX Ingress → Posts app pods (×3) → PgBouncer sidecar → PostgreSQL · Prometheus scrapes `/metrics` from each pod → Grafana dashboards · GitHub Actions builds and pushes on every merge to `main`.
 
@@ -40,24 +40,17 @@
 ├── cmd/
 │   └── main.go                 # Application entrypoint
 ├── internal/
-│   ├── handler/                # HTTP handlers
-│   ├── repository/             # DB layer
-│   └── metrics/                # Custom Prometheus metrics
+│   ├── db/                     # DB layer
+│   ├── handlers/               # HTTP handlers
+│   ├── metrics/                # custom app metrics
+│   └── middleware/             # logging
 ├── k8s/
-│   ├── namespace.yaml
-│   ├── deployment.yaml         # Posts app deployment
-│   ├── service.yaml
-│   ├── ingress.yaml
-│   ├── configmap.yaml
-│   ├── secret.yaml             # ⚠️ Not committed — see Secrets section
-│   ├── pvc.yaml
-│   ├── postgres/
-│   │   ├── deployment.yaml     # PostgreSQL + PgBouncer sidecar
-│   │   ├── service.yaml
-│   │   └── pgbouncer-config.yaml
-│   └── monitoring/
-│       ├── service-monitor.yaml
-│       └── grafana-dashboard.yaml
+│   ├── db-secret.yaml
+│   ├── ingress.yaml         
+│   ├── db.yaml
+│   ├── app.yaml                # Posts app deployment
+│   └── prom-serviceMon.yaml
+│    
 ├── load-tests/
 │   └── k6-script.js            # K6 load test scenario
 ├── Dockerfile
